@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        function showResult() {
+            let month = parseInt(document.getElementById("month").value);
+            let day = parseInt(document.getElementById("day").value);
+
+            let limit = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+
+
+            let prof = [{
+                sign: "やぎ",
+                start: new Date('1/1'),
+                end: new Date('1/19')
+            }, {
+                sign: "みずがめ",
+                start: new Date('1/20'),
+                end: new Date('2/18')
+            }, {
+                sign: "うお",
+                start: new Date('2/19'),
+                end: new Date('3/20')
+            }, {
+                sign: "おひつじ",
+                start: new Date('3/21'),
+                end: new Date('4/19')
+            }, {
+                sign: "おうし",
+                start: new Date('4/20'),
+                end: new Date('5/20')
+            }, {
+                sign: "ふたご",
+                start: new Date('5/21'),
+                end: new Date('6/21')
+            }, {
+                sign: "かに",
+                start: new Date('6/22'),
+                end: new Date('7/22')
+            }, {
+                sign: "しし",
+                start: new Date('7/23'),
+                end: new Date('8/22')
+            }, {
+                sign: "おとめ",
+                start: new Date('8/23'),
+                end: new Date('9/22')
+            }, {
+                sign: "てんびん",
+                start: new Date('9/23'),
+                end: new Date('10/23')
+            }, {
+                sign: "さそり",
+                start: new Date('10/24'),
+                end: new Date('11/22')
+            }, {
+                sign: "いて",
+                start: new Date('11/23'),
+                end: new Date('12/21')
+            }, {
+                sign: "やぎ",
+                start: new Date('12/22'),
+                end: new Date('12/31')
+            }];
+
+            if (month < 1 || month > 12 || day < 1 || day > limit[month]) {
+                result.innerHTML = 'その日付は無いよ!!';
+                return;
+            }
+
+            let sumple = new Date(`'${month}/${day}'`);
+            console.log(sumple);
+            console.log(month);
+
+            const found = prof.find(element => element.start <= sumple && element.end >= sumple);
+
+            console.log(found.sign);
+            result.innerHTML = `${month}月${day}日は${found.sign}座です`;
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="display">
+    日付を入力してね<br />
+    <input type="text" id="month" placeholder="月を入力" class="insert">月
+    <input type="text" id="day" placeholder="日を入力" class="insert">日
+    <br>
+    <button onclick="showResult()" class="button">判定！</button>
+    <div id="result">結果表示</div>
+    </div>
+</body>
+
+</html>
